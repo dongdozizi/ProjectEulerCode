@@ -1,2 +1,2 @@
 # ProjectEulerCode
-Code for problems in project euler
+Code and answer for problems in project euler https://projecteuler.net/
