@@ -75,3 +75,4 @@ Code and answer for problems in project euler https://projecteuler.net/
 |919|134222859969633|
 |920|1154027691000533893|
 |921|378401935|
+|926|40410219|
