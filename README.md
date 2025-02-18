@@ -77,3 +77,4 @@ Code and answer for problems in project euler https://projecteuler.net/
 |921|378401935|
 |926|40410219|
 |928|81108001093|
+|932|72673459417881349|
