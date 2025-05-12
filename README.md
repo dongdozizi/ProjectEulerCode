@@ -79,3 +79,4 @@ Code and answer for problems in project euler https://projecteuler.net/
 |928|81108001093|
 |932|72673459417881349|
 |938|0.2928967987|
+|940|969134784|
