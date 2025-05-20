@@ -6,40 +6,29 @@
 using namespace std;
 typedef long long ll;
 ll mod=1234567891;
-ll tw[10000007];
-ll qpow(ll a,ll b){
-    if(b==0) return 1;
-    ll c=qpow(a,b/2);
-    c=(c*c)%mod;
-    if(b%2==1) c=(c*a)%mod;
-    return c;
+ll pow2[100005][2],sq;
+void init() {
+    sq=sqrt(mod);
+    pow2[0][0]=pow2[0][1]=1;
+    for (ll i=1;i<=sq;++i) pow2[i][0]=pow2[i-1][0]*2%mod;
+    ll base=pow2[sq][0];
+    for (ll i=1;i<=sq;++i) pow2[i][1]=pow2[i-1][1]*base%mod;
+}
+ll power2(ll b) {
+    b%=mod-1;
+    return pow2[b%sq][0]*pow2[b/sq][1]%mod;
 }
 ll calc(ll l,ll r){
     if((l+r)%2ll==0) return((l+r)/2ll%mod)*((r-l+1)%mod)%mod;
     else return((l+r)%mod)*((r-l+1)/2ll%mod)%mod;
 }
 int main(){
-    ll sum=0;
+    init();
     ll n=100000000000000ll;
-    // for(int i=1;i*i<=n;i++){
-    //     ll p1=n/i-1;
-    //     ll p2=n-p1-1;
-    //     sum+=i*(qpow(2,p1)-1)*(qpow(2,p2));
-    // }
-    sum=0;
-    //n=10;
-    ll cnt=0;
-    for(ll l=1;l<=n;){
-        ll k=n/l;
-        ll r=n/k;
-        ll p1=k-1;
-        ll p2=n-p1-1;
-        // if(cnt%1000000==0)
-        // printf("%lld - %lld %lld %lld %lld %lld\n",cnt,l,r,k,p1,p2);
-        sum+=calc(l,r)*(qpow(2,p1)-1ll)%mod*qpow(2,p2)%mod;
-        l=r+1;
-        cnt++;
+    ll sum=calc(1,n)*power2(n-1)%mod;
+    for(ll l=1,r,k;l<=n;l=r+1){
+        k=n/l,r=n/k;
+        sum-=calc(l,r)*power2(n-k)%mod;
     }
-    sum=sum%mod;
-    cout<<sum<<"\n";
+    cout<<(sum%mod+mod)%mod<<"\n";
 }
